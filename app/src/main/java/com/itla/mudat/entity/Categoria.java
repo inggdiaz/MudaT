@@ -6,7 +6,6 @@ package com.itla.mudat.entity;
 
 public class Categoria {
     private Integer id;
-    private String descripcion;
     private String name;
 
     public Integer getId() {
@@ -15,14 +14,6 @@ public class Categoria {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public String getName() {

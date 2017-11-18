@@ -8,8 +8,8 @@ import java.util.Date;
 
 public class Anuncio {
     private Integer id;
-    private Integer idCategoria;
-    private Integer idUsuario;
+    private Categoria categoria;
+    private Usuario usuario;
     private Date fecha;
     private Integer condicion;
     private Double precio;
@@ -23,22 +23,6 @@ public class Anuncio {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Integer idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public Date getFecha() {

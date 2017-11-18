@@ -7,7 +7,7 @@ package com.itla.mudat.entity;
 public class Usuario {
     private Integer id;
     private String nombre;
-    private String tipoUsuario;
+    private TipoUsuario tipoUsuario;
     private String identificacion;
     private String email;
     private String telefonos;
@@ -30,13 +30,6 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
 
     public String getIdentificacion() {
         return identificacion;
