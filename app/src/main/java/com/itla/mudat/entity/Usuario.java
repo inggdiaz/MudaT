@@ -30,6 +30,13 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 
     public String getIdentificacion() {
         return identificacion;
@@ -69,5 +76,19 @@ public class Usuario {
 
     public void setEstatus(Boolean estatus) {
         this.estatus = estatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", tipoUsuario=" + tipoUsuario +
+                ", identificacion='" + identificacion + '\'' +
+                ", email='" + email + '\'' +
+                ", telefonos='" + telefonos + '\'' +
+                ", clave='" + clave + '\'' +
+                ", estatus=" + estatus +
+                '}';
     }
 }
