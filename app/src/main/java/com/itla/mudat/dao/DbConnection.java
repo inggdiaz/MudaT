@@ -3,6 +3,7 @@ package com.itla.mudat.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Gerónimo Díaz on 25/11/2017.
@@ -17,8 +18,9 @@ public class DbConnection extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase db) {
+        Log.i(LOG_T, "Iniciando onCreate...");
+        db.execSQL(SqlHelperSchema.USUARIO_TABLE);
     }
 
     @Override
