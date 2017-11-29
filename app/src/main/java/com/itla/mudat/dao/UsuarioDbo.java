@@ -30,7 +30,7 @@ public class UsuarioDbo {
     public void crear(Usuario usuario) {
         SQLiteDatabase db = connection.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        System.out.println(usuario.toString());
+//        System.out.println(usuario.toString());
 //        cv.put("id", "1");
         cv.put("nombre", usuario.getNombre());
         cv.put("tipo_usuario", usuario.getTipoUsuario().toString());

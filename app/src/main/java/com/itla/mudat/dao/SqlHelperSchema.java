@@ -16,4 +16,28 @@ public class SqlHelperSchema {
             "\t`status`\tINTEGER NOT NULL DEFAULT 1\n" +
 //            "\tPRIMARY KEY(`id`)\n" +
             ");";
+
+    public static final String CATEGORIA_TABLE = "CREATE TABLE IF NOT EXISTS `categoria` (\n" +
+            "\t`id`\tINTEGER NOT NULL primary key AUTOINCREMENT,\n" +
+            "\t`name`\tTEXT NOT NULL\n" +
+            ");";
+    public static final String ANUNCIO_TABLE = "CREATE TABLE IF NOT EXISTS `anuncio` (\n" +
+            "\t`id`\tINTEGER NOT NULL AUTOINCREMENT,\n" +
+            "\t`id_categoria`\tINTEGER NOT NULL,\n" +
+            "\t`id_usuario`\tINTEGER NOT NULL,\n" +
+            "\t`fecha`\tTEXT NOT NULL,\n" +
+            "\t`condicion`\tINTEGER NOT NULL,\n" +
+            "\t`precio`\tNUMERIC NOT NULL,\n" +
+            "\t`titulo`\tTEXT NOT NULL,\n" +
+            "\t`ubicacion`\tTEXT NOT NULL,\n" +
+            "\t`detalle`\tTEXT NOT NULL,\n" +
+            "\tPRIMARY KEY(`id`)\n" +
+            ");";
+    public static final String FOTOS_TABLE = "CREATE TABLE IF NOT EXISTS `fotos` (\n" +
+            "\t`id`\tINTEGER NOT NULL AUTOINCREMENT,\n" +
+            "\t`id_anuncio`\tINTEGER NOT NULL,\n" +
+            "\t`image`\tTEXT NOT NULL,\n" +
+            "\t`status`\tINTEGER NOT NULL DEFAULT 1,\n" +
+            "\tPRIMARY KEY(`id`)\n" +
+            ");";
 }
