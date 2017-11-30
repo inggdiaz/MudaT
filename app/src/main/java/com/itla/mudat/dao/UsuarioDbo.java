@@ -47,7 +47,7 @@ public class UsuarioDbo {
     public List<Usuario> buscar() {
         List<Usuario> usuarios = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
-        String columnas[] = new String[]{"id", "nombre", "email", "tipo_usuario"};
+        String columnas[] = new String[]{"id", "nombre", "email", "tipo_usuario", "identificacion", "telefonos", "clave", "status"};
         Cursor cursor = db.query("usuario", columnas, null, null, null, null, null);
 
         cursor.moveToFirst();
@@ -56,11 +56,45 @@ public class UsuarioDbo {
             u.setId(cursor.getInt(cursor.getColumnIndex("id")));
             u.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
             u.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            u.setIdentificacion(cursor.getString(cursor.getColumnIndex("identificacion")));
+            u.setTelefonos(cursor.getString(cursor.getColumnIndex("telefonos")));
+            u.setClave(cursor.getString(cursor.getColumnIndex("clave")));
+            u.setEstatus(Boolean.parseBoolean(String.valueOf(cursor.getInt(cursor.getColumnIndex("status")))));
             u.setTipoUsuario(TipoUsuario.valueOf(cursor.getString(cursor.getColumnIndex("tipo_usuario"))));
             cursor.moveToNext();
             usuarios.add(u);
         }
         cursor.close();
         return usuarios;
+    }
+
+
+    /**
+     * Get Usuario By Id
+     *
+     * @param id
+     * @return
+     */
+    public Usuario buscarId(Integer id) {
+
+        Usuario usuario = new Usuario();
+        SQLiteDatabase db = connection.getReadableDatabase();
+        String columnas[] = new String[]{"id", "nombre", "email", "tipo_usuario", "identificacion", "telefonos", "clave", "status"};
+        Cursor cursor = db.query("usuario", columnas, "id=" + id, null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            usuario.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            usuario.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
+            usuario.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+            usuario.setIdentificacion(cursor.getString(cursor.getColumnIndex("identificacion")));
+            usuario.setTelefonos(cursor.getString(cursor.getColumnIndex("telefonos")));
+            usuario.setClave(cursor.getString(cursor.getColumnIndex("clave")));
+            usuario.setEstatus(Boolean.parseBoolean(String.valueOf(cursor.getInt(cursor.getColumnIndex("status")))));
+            usuario.setTipoUsuario(TipoUsuario.valueOf(cursor.getString(cursor.getColumnIndex("tipo_usuario"))));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return usuario;
     }
 }

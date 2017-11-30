@@ -14,7 +14,7 @@ public class Anuncio {
     private Integer condicion;
     private Double precio;
     private String titulo;
-    private Integer ubicacion;
+    private String ubicacion;
     private String detalle;
 
     public Categoria getCategoria() {
@@ -73,11 +73,11 @@ public class Anuncio {
         this.titulo = titulo;
     }
 
-    public Integer getUbicacion() {
+    public String getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Integer ubicacion) {
+    public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
 
