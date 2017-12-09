@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.itla.mudat.view.BannerActivity;
 import com.itla.mudat.view.CategoryListActivity;
 import com.itla.mudat.view.RegUserActivity;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnUsers;
     private Button btnCategory;
+    private Button btnBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.btnUsers = findViewById(R.id.btnUsers);
         this.btnCategory = findViewById(R.id.btnCategory);
+        this.btnBanner = findViewById(R.id.btnBanner);
 
         this.btnUsers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent viewCategoryList = new Intent(MainActivity.this, CategoryListActivity.class);
                 startActivity(viewCategoryList);
+            }
+        });
+
+        this.btnBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent viewBanner = new Intent(MainActivity.this, BannerActivity.class);
+                startActivity(viewBanner);
             }
         });
 

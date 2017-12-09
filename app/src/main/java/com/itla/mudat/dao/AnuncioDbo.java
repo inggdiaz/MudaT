@@ -23,6 +23,7 @@ import java.util.List;
 public class AnuncioDbo {
     private DbConnection connection;
     private Context context;
+    private static final SimpleDateFormat DF = new SimpleDateFormat("dd-MM-yyyy");
 
     public AnuncioDbo(Context context) {
         this.connection = new DbConnection(context);
@@ -40,7 +41,7 @@ public class AnuncioDbo {
 
         cv.put("id_categoria", anuncio.getCategoria().getId());
         cv.put("id_usuario", anuncio.getUsuario().getId());
-        cv.put("fecha", anuncio.getFecha().toString());
+        cv.put("fecha", DF.format(anuncio.getFecha()));
         cv.put("condicion", anuncio.getCondicion());
         cv.put("precio", anuncio.getPrecio());
         cv.put("titulo", anuncio.getTitulo());
@@ -55,8 +56,16 @@ public class AnuncioDbo {
     public List<Anuncio> buscar() {
         List<Anuncio> anuncio = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
-        String columnas[] = new String[]{"id", "id_categoria", "id_usuario", "fecha", "condicion", "precio", "titulo", "ubicacion", "detalle"};
-        Cursor cursor = db.query("usuario", columnas, null, null, null, null, null);
+        
+        String sql = "\n" +
+                "select a.*, \n" +
+                "\t   u.nombre as u_nombre,\n" +
+                "\t   c.name as c_name \n" +
+                "from anuncio a\n" +
+                "\tinner join usuario u on a.id_usuario = u.id\n" +
+                "\tinner join categoria c on a.id_categoria = c.id";
+        Cursor cursor = db.rawQuery(sql, null);
+//        Cursor cursor = db.rawQuery("select a.* u.nombre as u_nombre,  ", columnas, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -64,12 +73,12 @@ public class AnuncioDbo {
             Categoria categoria = new Categoria();
             Usuario usuario = new Usuario();
 
+            usuario.setId(cursor.getInt(cursor.getColumnIndex("id_usuario")));
+            usuario.setNombre(cursor.getString(cursor.getColumnIndex("c_name")));
 
-            Integer idCategoria = cursor.getInt(cursor.getColumnIndex("id_categoria"));
-            categoria = (new CategoriaDbo(this.context).buscarId(idCategoria));
+            categoria.setId(cursor.getInt(cursor.getColumnIndex("id_categoria")));
+            categoria.setName(cursor.getString(cursor.getColumnIndex("id_usuario")));
 
-            Integer idUsuario = cursor.getInt(cursor.getColumnIndex("id_categoria"));
-            usuario = (new UsuarioDbo(this.context).buscarId(idUsuario));
 
             a.setId(cursor.getInt(cursor.getColumnIndex("id")));
             a.setCategoria(categoria);
@@ -94,6 +103,7 @@ public class AnuncioDbo {
 
     /**
      * Get Anuncio By Id
+     *
      * @param id
      * @return
      */

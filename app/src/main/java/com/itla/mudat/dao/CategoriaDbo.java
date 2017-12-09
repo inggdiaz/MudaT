@@ -34,7 +34,11 @@ public class CategoriaDbo {
 
         cv.put("name", categoria.getName());
 
-        db.insert("categoria", null, cv);
+        if (categoria.getId() > 0) {
+            db.update("categoria", cv, "id = ?", new String[]{String.valueOf(categoria.getId())});
+        } else {
+            db.insert("categoria", null, cv);
+        }
         db.close();
     }
 
@@ -59,6 +63,7 @@ public class CategoriaDbo {
 
     /**
      * Get Categoria By Id
+     *
      * @param id
      * @return
      */

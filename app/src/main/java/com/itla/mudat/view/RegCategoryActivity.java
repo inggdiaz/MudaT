@@ -18,6 +18,7 @@ public class RegCategoryActivity extends AppCompatActivity {
     private Button btnSave;
     private Button btnSearch;
     private Integer id;
+    private Categoria categoria;
 
     public RegCategoryActivity() {
         this.id = 0;
@@ -28,16 +29,30 @@ public class RegCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_category);
 
+        Bundle params = getIntent().getExtras();
+
         this.categoryName = findViewById(R.id.txtNameCategory);
         this.btnSave = findViewById(R.id.btnSaveCategory);
         this.btnSearch = findViewById(R.id.btnSearchCategory);
+
+        if (params != null && params.containsKey("category")) {
+            this.fillFields(params);
+        }
 
 
         this.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String msg = "The User was Created";
+                String msg = "The Category was Update";
                 Categoria categoria = new Categoria();
+
+                if (RegCategoryActivity.this.categoria == null) {
+                    RegCategoryActivity.this.categoria = new Categoria();
+                    msg = "The Category was Created";
+                } else {
+                    categoria.setId(RegCategoryActivity.this.id);
+                }
+
                 categoria.setName(RegCategoryActivity.this.categoryName.getText().toString());
 
                 new CategoriaDbo(RegCategoryActivity.this).crear(categoria);
@@ -53,5 +68,11 @@ public class RegCategoryActivity extends AppCompatActivity {
                 startActivity(viewCategoryList);
             }
         });
+    }
+
+    public void fillFields(Bundle params) {
+        this.categoria = (Categoria) params.getSerializable("category");
+        this.categoryName.setText(this.categoria.getName());
+        this.id = this.categoria.getId();
     }
 }

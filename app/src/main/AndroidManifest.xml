@@ -31,7 +31,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserListActivity" />
         <activity android:name=".view.CategoryListActivity" />
-        <activity android:name=".view.RegCategoryActivity"></activity>
+        <activity android:name=".view.RegCategoryActivity" />
+        <activity android:name=".view.AdvertisementsActivity" />
+        <activity android:name=".view.BannerActivity" />
+        <activity android:name=".view.RegBannerActivity"></activity>
     </application>
 
 </manifest>

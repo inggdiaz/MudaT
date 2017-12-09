@@ -23,5 +23,7 @@
 
     <include layout="@layout/content_reg_user" />
 
+    <include layout="@layout/content_footer" />
+
 
 </android.support.design.widget.CoordinatorLayout>
