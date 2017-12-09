@@ -1,10 +1,12 @@
 package com.itla.mudat.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Gerónimo Díaz on 18/11/2017.
  */
 
-public class Categoria {
+public class Categoria implements Serializable {
     private Integer id;
     private String name;
 

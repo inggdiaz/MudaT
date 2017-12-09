@@ -28,7 +28,10 @@
         <activity
             android:name=".view.RegUserActivity"
             android:label="@string/title_activity_reg_user"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UserListActivity" />
+        <activity android:name=".view.CategoryListActivity" />
+        <activity android:name=".view.RegCategoryActivity"></activity>
     </application>
 
 </manifest>

@@ -40,7 +40,12 @@ public class UsuarioDbo {
         cv.put("clave", usuario.getClave());
         cv.put("status", 1);
 
-        db.insert("usuario", null, cv);
+        if (usuario.getId() > 0) {
+            db.update("usuario", cv, "id = ?", new String[]{String.valueOf(usuario.getId())});
+        } else {
+            db.insert("usuario", null, cv);
+        }
+
         db.close();
     }
 
@@ -61,6 +66,8 @@ public class UsuarioDbo {
             u.setClave(cursor.getString(cursor.getColumnIndex("clave")));
             u.setEstatus(Boolean.parseBoolean(String.valueOf(cursor.getInt(cursor.getColumnIndex("status")))));
             u.setTipoUsuario(TipoUsuario.valueOf(cursor.getString(cursor.getColumnIndex("tipo_usuario"))));
+
+
             cursor.moveToNext();
             usuarios.add(u);
         }
