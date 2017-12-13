@@ -9,10 +9,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.itla.mudat.view.BannerActivity;
+import com.itla.mudat.view.BaseActivity;
 import com.itla.mudat.view.CategoryListActivity;
 import com.itla.mudat.view.RegUserActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     private Button btnUsers;

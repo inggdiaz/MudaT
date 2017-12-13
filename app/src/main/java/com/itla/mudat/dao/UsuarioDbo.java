@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import com.itla.mudat.entity.TipoUsuario;
 import com.itla.mudat.entity.Usuario;
@@ -40,10 +41,21 @@ public class UsuarioDbo {
         cv.put("clave", usuario.getClave());
         cv.put("status", 1);
 
-        if (usuario.getId() > 0) {
-            db.update("usuario", cv, "id = ?", new String[]{String.valueOf(usuario.getId())});
+        if (usuario.getId() != null) {
+            try {
+                db.update("usuario", cv, "id = ?", new String[]{String.valueOf(usuario.getId())});
+                System.out.println("Update usuario = [" + usuario.toString() + "]");
+            } catch (SQLiteException e) {
+                e.printStackTrace();
+            }
         } else {
-            db.insert("usuario", null, cv);
+
+            try {
+                db.insert("usuario", null, cv);
+                System.out.println("Save usuario = [" + usuario.toString() + "]");
+            } catch (SQLiteException se) {
+                se.printStackTrace();
+            }
         }
 
         db.close();

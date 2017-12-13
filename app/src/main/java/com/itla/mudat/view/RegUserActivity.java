@@ -22,7 +22,7 @@ import com.itla.mudat.entity.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegUserActivity extends AppCompatActivity {
+public class RegUserActivity extends BaseActivity {
 
     final private String LOG_T = "Registro De Usuario";
     UsuarioDbo u;

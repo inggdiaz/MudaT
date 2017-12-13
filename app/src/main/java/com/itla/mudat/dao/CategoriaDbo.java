@@ -34,7 +34,7 @@ public class CategoriaDbo {
 
         cv.put("name", categoria.getName());
 
-        if (categoria.getId() > 0) {
+        if (categoria.getId() != null) {
             db.update("categoria", cv, "id = ?", new String[]{String.valueOf(categoria.getId())});
         } else {
             db.insert("categoria", null, cv);

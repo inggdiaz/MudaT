@@ -14,7 +14,7 @@ public class DbConnection extends SQLiteOpenHelper {
     public static String LOG_T = "DbConnection";
 
     public DbConnection(Context context) {
-        super(context, DATABASE_NAME, null, 4);
+        super(context, DATABASE_NAME, null, 5);
     }
 
     @Override
