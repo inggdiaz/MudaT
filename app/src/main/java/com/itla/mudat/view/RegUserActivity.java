@@ -25,7 +25,7 @@ import java.util.List;
 public class RegUserActivity extends BaseActivity {
 
     final private String LOG_T = "Registro De Usuario";
-    UsuarioDbo u;
+    private UsuarioDbo u;
     private EditText name;
     private EditText identificacion;
     private EditText email;
@@ -75,7 +75,6 @@ public class RegUserActivity extends BaseActivity {
                 } else {
                     usuario.setId(RegUserActivity.this.id);
                 }
-
 
                 usuario.setNombre(RegUserActivity.this.name.getText().toString());
                 usuario.setIdentificacion(RegUserActivity.this.identificacion.getText().toString());

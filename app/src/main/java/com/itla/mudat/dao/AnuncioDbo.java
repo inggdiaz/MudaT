@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 
 import com.itla.mudat.entity.Anuncio;
 import com.itla.mudat.entity.Categoria;
@@ -40,7 +41,8 @@ public class AnuncioDbo {
         ContentValues cv = new ContentValues();
 
         cv.put("id_categoria", anuncio.getCategoria().getId());
-        cv.put("id_usuario", anuncio.getUsuario().getId());
+//        cv.put("id_usuario", anuncio.getUsuario().getId());
+        cv.put("id_usuario", 1);
         cv.put("fecha", DF.format(anuncio.getFecha()));
         cv.put("condicion", anuncio.getCondicion());
         cv.put("precio", anuncio.getPrecio());
@@ -48,15 +50,28 @@ public class AnuncioDbo {
         cv.put("ubicacion", anuncio.getUbicacion());
         cv.put("detalle", anuncio.getDetalle());
 
+        if (anuncio.getId() != null) {
+            try {
+                db.update("anuncio", cv, "id = ?", new String[]{String.valueOf(anuncio.getId())});
+            } catch (SQLiteException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                db.insert("anuncio", null, cv);
+            } catch (SQLiteException e) {
+                e.printStackTrace();
+            }
+        }
 
-        db.insert("anuncio", null, cv);
+
         db.close();
     }
 
     public List<Anuncio> buscar() {
         List<Anuncio> anuncio = new ArrayList<>();
         SQLiteDatabase db = connection.getReadableDatabase();
-        
+
         String sql = "\n" +
                 "select a.*, \n" +
                 "\t   u.nombre as u_nombre,\n" +
